@@ -51,7 +51,8 @@
   --black-200: #5B5D6C;
   --black-100: #A4ABBE;
   --white: #FFFFFF;
-  --lead: #FF7F00;
-  --serve: #00A7FF;
-  --assist: #28AD1D;
+  --opacity-white: #FFFFFFB2;
+  --placeholder: #9C9C9C;
+  --active-label: #676767;
+  --inputBg: #E9ECF89C;
 }

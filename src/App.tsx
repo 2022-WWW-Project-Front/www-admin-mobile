@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './page/Home';
+import HomePage from './page/HomePage';
 import Greeting from './page/Greeting';
 import Menu from './page/Menu';
 import EditGenre from './components/existing-user/EditGenre';
@@ -16,7 +16,7 @@ import LastStep from './components/new-user/LastStep';
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="artist" element={<Greeting />}>
         <Route index element={<Menu />} />
         <Route path="edit-genre" element={<EditGenre />} />
