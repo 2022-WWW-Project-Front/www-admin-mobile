@@ -1,11 +1,8 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const Greeting = () => {
-  return (
-    <div>
-      Greeting
-    </div>
-  );
+  return <Outlet />;
 };
 
 export default Greeting;
