@@ -30,7 +30,6 @@ export const InputBox = styled.div`
   width: 100%;
   margin-bottom: 1.75rem;
   h3 {
-    margin-bottom: 1.125rem;
     font-weight: 600;
     span {
       color: var(--black-100);
@@ -38,6 +37,7 @@ export const InputBox = styled.div`
     }
   }
   input[type='text'] {
+    margin-top: 1.125rem;
     width: 100%;
     background-color: var(--inputBg);
     padding: 0.875rem 0.625rem;
@@ -67,6 +67,7 @@ export const InputBox = styled.div`
   }
   input[type='file'] {
     display: none;
+    padding-top: 1.125rem;
   }
 `;
 

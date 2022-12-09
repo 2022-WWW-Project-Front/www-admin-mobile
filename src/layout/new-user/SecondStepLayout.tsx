@@ -28,7 +28,7 @@ const SecondStepLayout = ({ intro, setIntro, imageSrc, encodeFileToBase64, goSte
           <h3>
             프로필 사진 <span>(최대 8mb)</span>
           </h3>
-          <ImgFile htmlFor="images" className="profileBox" imageSrc={imageSrc}>
+          <ImgFile htmlFor="images" imageSrc={imageSrc}>
             <div></div>
           </ImgFile>
           <input type="file" id="images" onChange={encodeFileToBase64} />
@@ -81,7 +81,7 @@ const ImgFile = styled.label<{ imageSrc: string }>`
   display: flex;
   justify-content: center;
   overflow: hidden;
-  //transform: scale(1.3);
+  margin-top: 1.125rem;
   ${({ imageSrc }) => {
     if (!imageSrc) {
       return css`
