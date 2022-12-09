@@ -20,7 +20,7 @@ const MenuLayout = () => {
     }
   ];
   return (
-    <div>
+    <div style={{ minHeight: 'calc(100vh - 20.375rem)' }}>
       <HeaderLayout />
       <MenuContainer>
         {menuList.map((menu) => (
@@ -38,13 +38,16 @@ export default MenuLayout;
 
 const MenuContainer = styled.div`
   display: flex;
+  min-height: calc(100vh - 22.375rem);
   flex-direction: column;
   gap: 3rem;
-  margin: 3rem 0;
+  padding: 3rem 0 6.625rem;
+  box-sizing: border-box;
 `;
 
 const NavBox = styled(Link)`
-  width: 19.875rem;
+  width: 84%;
+  max-width: 17.875rem;
   height: 5.625rem;
   background-color: var(--main);
   padding-left: 2rem;
