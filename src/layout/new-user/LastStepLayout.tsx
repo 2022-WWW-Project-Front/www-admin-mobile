@@ -2,6 +2,9 @@ import React from 'react';
 import * as S from '../common/commonStyle';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Modal from '../common/Modal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../stores';
 
 interface LastStepProps {
   imageSrc: string[];
@@ -27,6 +30,7 @@ const LastStepLayout = ({
   complete
 }: LastStepProps) => {
   const navigate = useNavigate();
+  const modal = useSelector((state: RootState) => state.admin).modal;
   return (
     <div>
       <S.ProcessHeader>
@@ -127,6 +131,7 @@ const LastStepLayout = ({
           등록 완료
         </S.NextBtn>
       </S.Content>
+      {modal && <Modal />}
     </div>
   );
 };

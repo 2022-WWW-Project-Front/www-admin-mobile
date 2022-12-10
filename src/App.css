@@ -61,6 +61,7 @@ textarea::placeholder {
 #root,
 #docs-root {
   --main: #455FFF;
+  --main2: #1635F4;
   --sub: #E9ECF8;
   --black-500: #121820;
   --black-400: #242528;
@@ -76,4 +77,5 @@ textarea::placeholder {
   --inputBg: #E9ECF89C;
   --input-focus: rgba(207, 207, 207, 0.81);
   --disableBtn: rgba(69, 95, 255, 0.66);
+  --modalBg: #0000006B;
 }

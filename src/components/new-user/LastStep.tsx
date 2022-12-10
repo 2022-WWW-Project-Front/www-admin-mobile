@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LastStepLayout from '../../layout/new-user/LastStepLayout';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setModal } from '../../stores/admin';
 
 const ALLOW_FILE_EXTENSION = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 const ALLOW_VIDEO_EXTENSION = /(\.mp4)$/i;
@@ -10,7 +11,7 @@ const LastStep = () => {
   const [artworkList, setArtworkList] = useState<File[]>([]);
   const [video, setVideo] = useState('');
   const [description, setDescription] = useState({ title: '', content: '' });
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const encodeFileToBase64 = (event: { target: HTMLInputElement }) => {
     const target = event.target;
@@ -47,7 +48,7 @@ const LastStep = () => {
 
   const complete = () => {
     // add to server
-    navigate('/artist');
+    dispatch(setModal(true));
   };
 
   return (
