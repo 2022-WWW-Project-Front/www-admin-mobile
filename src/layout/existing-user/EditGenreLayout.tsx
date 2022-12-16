@@ -4,15 +4,20 @@ import CheckRadio from '../common/icon/CheckRadio';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+interface ArtistInfo {
+  genre: string;
+  name: string;
+  nickname: string;
+  linkTree: string;
+  email: string;
+  contact: string;
+}
+
 interface EditGenreProps {
-  info: {
-    part: string;
-    name: string;
-    linkTree: string;
-  };
-  setInfo: (info: { linkTree: string; part: string; name: string }) => void;
+  info: ArtistInfo;
+  setInfo: (info: ArtistInfo) => void;
   partList: {
-    partName: string;
+    genre: string;
     name: string;
   }[];
   changeInfo: () => void;
@@ -26,19 +31,19 @@ const EditGenreLayout = ({ info, setInfo, partList, changeInfo }: EditGenreProps
         <S.BackIcon onClick={() => navigate(-1)} />
         장르 / 연락처 변경
       </S.ProcessHeader>
-      <S.Content>
+      <S.Content style={{ position: 'relative' }}>
         <RadioContainer>
           <h3>분야</h3>
           <RadioInputBox>
-            {partList.map(({ partName, name }) => (
+            {partList.map(({ genre, name }) => (
               <RadioOption
-                key={partName}
-                onClick={() => setInfo({ ...info, part: partName })}
-                value={partName === info.part}
+                key={genre}
+                onClick={() => setInfo({ ...info, genre: genre })}
+                value={genre === info.genre}
               >
-                <CheckRadio check={partName === info.part ? 'var(--black-400)' : 'var(--placeholder)'} />
-                <input type="radio" required name="part" id={partName} value={partName} />
-                <label htmlFor={partName}>{name}</label>
+                <CheckRadio check={genre === info.genre ? 'var(--black-400)' : 'var(--placeholder)'} />
+                <input type="radio" required name="part" id={genre} value={genre} />
+                <label htmlFor={genre}>{name}</label>
               </RadioOption>
             ))}
           </RadioInputBox>
@@ -47,17 +52,27 @@ const EditGenreLayout = ({ info, setInfo, partList, changeInfo }: EditGenreProps
           <h3>작가명</h3>
           <input
             type={'text'}
-            value={info.name}
+            value={info.nickname || info.name || ''}
             required
             placeholder="프로필에 표시될 작가명을 입력해주세요."
             onChange={(e) => setInfo({ ...info, name: e.target.value })}
           />
         </S.InputBox>
         <S.InputBox>
-          <h3>링크트리</h3>
+          <h3>이메일</h3>
           <input
             type={'text'}
-            value={info.linkTree}
+            value={info.email || ''}
+            required
+            placeholder="email"
+            onChange={(e) => setInfo({ ...info, email: e.target.value })}
+          />
+        </S.InputBox>
+        <S.InputBox style={{ paddingBottom: '5rem' }}>
+          <h3>링크트리(선택)</h3>
+          <input
+            type={'text'}
+            value={info.linkTree || ''}
             required
             placeholder="연락처에 연결할 링크를 입력해주세요."
             onChange={(e) => setInfo({ ...info, linkTree: e.target.value })}

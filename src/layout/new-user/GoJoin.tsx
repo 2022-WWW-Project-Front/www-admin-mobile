@@ -29,10 +29,12 @@ const GoJoin = () => {
 export default GoJoin;
 
 const NewUserContainer = styled.div`
+  min-height: calc(100vh - 22.375rem);
+  box-sizing: border-box;
   justify-content: center;
   font-size: 1.25rem;
   color: var(--black-400);
-  margin: 8rem 1.25rem;
+  padding: 8rem 1.25rem 3.825rem;
   text-align: center;
   strong {
     font-family: 'www', sans-serif;
@@ -55,6 +57,5 @@ const SignUpBtn = styled(Link)`
   font-weight: 600;
   font-size: 1.25rem;
   border: none;
-  margin-bottom: 8.375rem;
   text-decoration: none;
 `;

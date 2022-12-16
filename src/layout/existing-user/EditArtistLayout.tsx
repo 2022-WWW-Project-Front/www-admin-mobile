@@ -3,29 +3,28 @@ import styled from 'styled-components';
 import CloseBtn from '../common/icon/CloseBtn';
 
 interface EditArtistDetailProps {
-  artistInfo: {
-    profile: string;
-    title: string;
+  info: {
+    profileImage: string;
     description: string;
+    bio: string;
   };
-  setArtistInfo: (artistInfo: { profile: string; title: string; description: string }) => void;
+  setInfo: (info: { profileImage: string; description: string; bio: string }) => void;
   encodeFileToBase64: (event: { target: HTMLInputElement }) => void;
   backToMenu: () => void;
   changeInfo: () => void;
 }
 
 const EditArtistLayout = ({
-  artistInfo,
-  setArtistInfo,
+  info,
+  setInfo,
   encodeFileToBase64,
   backToMenu,
   changeInfo
 }: EditArtistDetailProps) => {
-  const { profile, title, description } = artistInfo;
   return (
     <ArtistDetailContainer>
       <ProfileImgContainer>
-        <ImgFile htmlFor="profile" imageSrc={profile}>
+        <ImgFile htmlFor="profile" imageSrc={info?.profileImage}>
           <div>
             <img src="/assets/profileBox.svg" alt="profile camera icon" />
           </div>
@@ -38,12 +37,14 @@ const EditArtistLayout = ({
       <ContentContainer>
         <input
           type={'text'}
-          value={title}
-          onChange={(e) => setArtistInfo({ ...artistInfo, title: e.target.value })}
+          placeholder="제목을 입력해주세요."
+          value={info?.description}
+          onChange={(e) => setInfo({ ...info, description: e.target.value })}
         />
         <textarea
-          value={description}
-          onChange={(e) => setArtistInfo({ ...artistInfo, description: e.target.value })}
+          value={info?.bio}
+          placeholder="최소 15자,최대 700자 로 입력해주세요."
+          onChange={(e) => setInfo({ ...info, bio: e.target.value })}
         />
       </ContentContainer>
       <NextBtn onClick={changeInfo}>수정완료</NextBtn>
@@ -80,6 +81,7 @@ const ImgFile = styled.label<{ imageSrc: string }>`
   height: 14.375rem;
   border: 1px var(--black-100) solid;
   box-sizing: border-box;
+  background-color: var(--white);
   background-image: ${({ imageSrc }) => `url(${imageSrc})`};
   background-position: center;
   background-repeat: no-repeat;

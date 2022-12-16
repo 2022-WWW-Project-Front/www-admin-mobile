@@ -1,45 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditArtistLayout from '../../layout/existing-user/EditArtistLayout';
 import { useNavigate } from 'react-router-dom';
+import { useArtistInfoQuery, useEditArtistInfoMutation, useFileUploadMutation } from '../../stores/rtkQuery';
 
 const ALLOW_FILE_EXTENSION = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
 const EditArtist = () => {
+  const { data: artistInfo } = useArtistInfoQuery();
+  const [fileUpload, { data: profile }] = useFileUploadMutation();
+  const [editInfo, { isError }] = useEditArtistInfoMutation();
   const navigate = useNavigate();
-  const [artistInfo, setArtistInfo] = useState({
-    profile:
-      'https://avatars.githubusercontent.com/u/98644969?s=400&u=473c711eeed5bf1453e9e7522718ed012ece3235&v=4',
-    title: '작가소개 공백포함 16자제한',
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 공백포한 700자로 제한합니다......`
+  const [info, setInfo] = useState({
+    profileImage: '',
+    description: '',
+    bio: ''
   });
+  useEffect(() => {
+    if (artistInfo) {
+      setInfo({
+        profileImage: artistInfo?.profileImage,
+        description: artistInfo?.description,
+        bio: artistInfo?.bio
+      });
+    }
+  }, [artistInfo]);
 
   const encodeFileToBase64 = (event: { target: HTMLInputElement }) => {
     const target = event.target;
     const files = target.files as FileList;
-    const fileLoaded = URL.createObjectURL(files[0]);
 
-    console.log('files: ', files[0]);
     if (!ALLOW_FILE_EXTENSION.exec(target.value)) {
       alert('파일 형식을 확인해주세요.');
       return;
     }
-    setArtistInfo({ ...artistInfo, profile: fileLoaded });
+
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    fileUpload(formData);
   };
+
+  useEffect(() => {
+    if (profile) {
+      setInfo({ ...info, profileImage: profile?.url });
+    }
+  }, [profile]);
 
   const backToMenu = () => {
     navigate('/artist');
   };
 
   const changeInfo = () => {
-    // forward to server
+    editInfo(info);
+    if (isError) {
+      alert('다시 시도해주십시오. 계속 에러가 날 경우 개발자에게 연락 주세요.');
+      return;
+    }
     navigate('/artist');
   };
 
   return (
     <EditArtistLayout
-      artistInfo={artistInfo}
-      setArtistInfo={setArtistInfo}
+      info={info}
+      setInfo={setInfo}
       encodeFileToBase64={encodeFileToBase64}
       backToMenu={backToMenu}
       changeInfo={changeInfo}
