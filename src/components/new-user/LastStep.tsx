@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LastStepLayout from '../../layout/new-user/LastStepLayout';
 import { useDispatch } from 'react-redux';
-import { setModal } from '../../stores/admin';
+import { setModal } from '../../stores/adminSlice';
 
 const ALLOW_FILE_EXTENSION = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 const ALLOW_VIDEO_EXTENSION = /(\.mp4)$/i;

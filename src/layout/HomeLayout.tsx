@@ -32,12 +32,15 @@ export default HomeLayout;
 
 const HomeContainer = styled.div`
   display: block;
+  min-height: calc(100vh - 22.375rem);
   flex-direction: column;
   align-items: center;
   padding: 0 1.25rem;
+  box-sizing: border-box;
   p {
     width: fit-content;
-    margin: 5.375rem auto 0;
+    padding-top: 5.375rem;
+    margin: 0 auto;
     font-family: 'www', sans-serif;
     font-size: 1.875rem;
     text-align: center;
@@ -79,4 +82,5 @@ const LoginBtn = styled.button`
   font-size: 1.25rem;
   border: none;
   margin-bottom: 8.375rem;
+  box-sizing: border-box;
 `;

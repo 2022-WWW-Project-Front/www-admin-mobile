@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setModal } from '../../stores/adminSlice';
 
 const AlertComplete = () => {
-  const [upload, setUpload] = useState(true);
+  const upload = true;
+  const dispatch = useDispatch();
+
   return (
     <CompleteContainer>
       <CompleteTitle>{upload ? 'COMPLETE' : 'FAILED'}</CompleteTitle>
       <CompleteContents>{upload ? '작품 등록이 완료되었습니다.' : '다시 시도해주세요.'}</CompleteContents>
-      <CloseBtn>확인</CloseBtn>
+      <CloseBtn onClick={() => dispatch(setModal(false))}>확인</CloseBtn>
     </CompleteContainer>
   );
 };

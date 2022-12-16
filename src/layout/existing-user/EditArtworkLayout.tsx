@@ -45,7 +45,7 @@ const EditArtworkLayout = ({
               onChange={encodeFileToBase64}
             />
             {imageSrc.map((image, idx) => (
-              <ArtworkImage key={image}>
+              <ArtworkImage key={image + idx}>
                 <img src={image} alt={'artwork'} />
                 <div onClick={() => deleteArtworkImg(idx)}>
                   <p></p>
