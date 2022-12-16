@@ -40,18 +40,42 @@
   color: var(--black-200);
 }
 
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 3px 1px var(--input-focus);
+}
+
+textarea {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  color: var(--black);
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Pretendard', sans-serif;
+  color: var(--placeholder);
+}
+
 .root,
 #root,
 #docs-root {
   --main: #455FFF;
+  --main2: #1635F4;
   --sub: #E9ECF8;
   --black-500: #121820;
   --black-400: #242528;
   --black-300: #3D3F4E;
   --black-200: #5B5D6C;
   --black-100: #A4ABBE;
+  --black: #000000;
   --white: #FFFFFF;
-  --lead: #FF7F00;
-  --serve: #00A7FF;
-  --assist: #28AD1D;
+  --opacity-white: #FFFFFFB2;
+  --placeholder: #9C9C9C;
+  --input-label: #676767;
+  --active-check:  #5D6DFF;
+  --inputBg: #E9ECF89C;
+  --input-focus: rgba(207, 207, 207, 0.81);
+  --disableBtn: rgba(69, 95, 255, 0.66);
+  --modalBg: #0000006B;
 }

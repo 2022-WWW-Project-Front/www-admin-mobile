@@ -1,7 +1,8 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const JoinArtist = () => {
-  return <div>JoinArtist</div>;
+  return <Outlet />;
 };
 
 export default JoinArtist;
